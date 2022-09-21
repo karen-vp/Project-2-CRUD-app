@@ -48,33 +48,34 @@
 
         <section id="crud-container">
             <h2 id="title-agenda">Agenda personal</h2>
-            <div class="input-container">
-                <label for="tarea">Tarea</label>
-                <input type="text" name="tarea" id="tarea-area" class="text-input">
-            </div>
 
-            <div class="input-container">
-                <label for="descripcion">Descripción</label>
-                <textarea name="descripcion" id="desc-area" class="text-input" rows="3"></textarea>
+            <form id="form">
+                
+                    <label for="tarea">Tarea</label>
+                    <input type="text" name="tarea" id="tarea-area" class="text-input">
+                          
+                    <label for="descripcion">Descripción</label>
+                    <textarea name="descripcion" id="desc-area" class="text-input" rows="3"></textarea>
 
-            </div>
+                    <label for="fecha">Fecha</label>
+                    <input type="date" name="fecha" id="fecha-area">
 
-            <div class="button-container">
-                <button type="button" class="btn-action">Agregar</button>
-                <button type="button" class="btn-action">Actualizar</button>
-            </div>
-
+                    <div>
+                        <input type="button" value="Agregar" class="btn-action" id="btn-add" onclick="Submit()">
+                        <input type="reset" value="Reiniciar" class="btn-action">
+                    </div>
+                    
+            </form>
+            
             <div class="tabla-agenda">
-                <table class="tabla">
+                <table id="table" class="tabla">
                     <tr>
-                        <th>No.</th>
-                        <th>Tarea</th>
-                        <th>Descripción</th>
-                        <th>Acciones</th>
+                        <th class=".column">Tarea</th>
+                        <th class=".column">Descripción</th>
+                        <th class=".column">Fecha</th>
+                        <th class=".column">Acciones</th>
                     </tr>
-                    <tr>
-
-                    </tr>
+                   
                 </table>
             </div>
         </section>
