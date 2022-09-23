@@ -169,6 +169,7 @@ th, td {
     text-align: left;
   }
 
+
   /*Vista para tabletas y telefonos*/
 @media only screen and (max-width: 768px) {
     .btn-comenzar{
@@ -184,6 +185,12 @@ th, td {
     .inicio-container{
         padding:40px;
     }
+
+    .btn-action{
+        margin: 5px;
+        align-items: center;
+    }
+
 }
 
   /*SECCIÓN FOOTER*/

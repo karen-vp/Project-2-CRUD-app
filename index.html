@@ -53,6 +53,7 @@
                 
                     <label for="tarea">Tarea</label>
                     <input type="text" name="tarea" id="tarea-area" class="text-input">
+                    <input type="hidden" id="numTarea">
                           
                     <label for="descripcion">Descripción</label>
                     <textarea name="descripcion" id="desc-area" class="text-input" rows="3"></textarea>
@@ -62,7 +63,10 @@
 
                     <div>
                         <input type="button" value="Agregar" class="btn-action" id="btn-add" onclick="Submit()">
-                        <input type="reset" value="Reiniciar" class="btn-action">
+                        <input type="button" onclick="updateData()" value="Actualizar" class="btn-action">
+                        <input type="reset" value="Limpiar campos" class="btn-action">
+
+                        
                     </div>
                     
             </form>
@@ -71,10 +75,11 @@
                 <table id="table" class="tabla">
                     <thead>
                         <tr>
-                            <th class=".column">Tarea</th>
-                            <th class=".column">Descripción</th>
-                            <th class=".column">Fecha</th>
-                            <th class=".column">Acciones</th>
+                            <th scope="col" width="3%">No.</th>
+                            <th scope="col"width="20%">Tarea</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col" width="15%">Fecha</th>
+                            <th scope="col" width="20%">Acciones</th>
                         </tr>
                  </thead>
                  <tbody id="tableBody">
