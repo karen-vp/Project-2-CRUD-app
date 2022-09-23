@@ -1,47 +1,75 @@
 //PROYECTO CRUD
 
-//Funcion que ejecuta el boton Agregar
+let listaTareas = [];
+
 function Submit (){
-    let dataInput = obtainData();
-    let dataRead = readDataLocalStorage(dataInput);
-    insertData(dataRead);
+    
+    listaTareas = JSON.parse(localStorage.getItem('listTareas'));
+    if(listaTareas === null){
+        listaTareas = [];
+    }
+    createData();
+
 }
 
 //Create
 //Obtenemos la información desde el Formulario
-function obtainData(){
-    let inputTarea = document.getElementById("tarea-area").value;
-    let inputDesc = document.getElementById("desc-area").value;
-    let inputFecha = document.getElementById("fecha-area").value;
+function createData(){
+    const nuevaTarea = {
+        tarea : document.getElementById('tarea-area').value,
+        descripcion : document.getElementById('desc-area').value,
+        fecha: document.getElementById('fecha-area').value
+    }
 
-    let arrayData = [inputTarea, inputDesc, inputFecha];
-    return arrayData;
+        document.getElementById('tarea-area').value = '';
+        document.getElementById('desc-area').value = '';
+        document.getElementById('fecha-area').value = '';
+        
+        listaTareas.push(nuevaTarea);
+        localStorage.setItem('listTareas', JSON.stringify(listaTareas));
+        showData(listaTareas);
+
 
 }
+
 //Read
-//Información en el LocalStorage
-function readDataLocalStorage(dataInput){
-    //Guardando la información en el local storage
+function showData(){
+     listaTareas = JSON.parse(localStorage.getItem('listTareas'));
+     document.getElementById('tableBody').innerHTML = "";
+     if(listaTareas !== null){
+        listaTareas.forEach((element,index)=>{
+            let row = document.createElement('tr');
+            row.innerHTML = `
+            <td>${element.tarea}</td>
+            <td>${element.descripcion}</td>
+            <td>${element.fecha}</td>
+            <td> 
+                <button type="button" class="btn-action" onClick="editItem(${index})">Editar</button>
+                <button type="button" class="btn-action" onClick="deleteItem(${index})">Borrar</button>
+            </td>
+            `;
+            document.getElementById('tableBody').appendChild(row);
+        });
+     }
+    }
+//Edit
+function editItem(tableData){
 
-    let tarea = localStorage.setItem("Tarea", dataInput[0]);
-    let description = localStorage.setItem("Descripcion", dataInput[1]);
-    let fecha = localStorage.setItem("Fecha", dataInput[2]);
 
-    //Obteniendo los valores desde el localStorage
-    let getTarea = localStorage.getItem("Tarea", tarea)
-    let getDesc = localStorage.getItem("Descripcion", description);
-    let getFecha = localStorage.getItem("Fecha", fecha);
 
-    let getArrayData = [getTarea, getDesc, getFecha];
-    return getArrayData;
+
 }
 
-//Insert
-function insertData(dataRead){
-    let table = document.getElementById("table")
-    let row = table.insertRow();
-    row.insertCell(0).innerHTML = dataRead[0];
-    row.insertCell(1).innerHTML = dataRead[1];
-    row.insertCell(2).innerHTML = dataRead[2];
+//Update
+
+function updateData(){
 
 }
+
+//Delete
+
+function deleteItem(){
+
+}
+
+showData(listaTareas);
